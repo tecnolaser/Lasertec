@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Configurar pieza — LaserTec</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">LASER<span class="dot">•</span>TEC</a>
+    <nav class="nav">
+      <a href="/#categorias">Categorias</a>
+      <a href="/carrito.html" class="cart-link">Carrito <span class="cart-count" data-cart-count>0</span></a>
+    </nav>
+  </div>
+</header>
+
+<section style="padding-top:48px;padding-bottom:24px">
+  <div class="container">
+    <div class="eyebrow mono" id="cat-eyebrow" style="color:var(--text-2);font-size:.78rem;text-transform:uppercase;letter-spacing:.1em">Cargando categoria...</div>
+    <h1 id="cat-titulo" style="font-size:2.2rem">—</h1>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="container">
+    <div id="alert-box"></div>
+    <div class="config-grid">
+      <form id="config-form">
+        <!-- Campos universales y extras se completan por JS -->
+        <div id="form-fields"></div>
+      </form>
+
+      <aside class="price-panel blueprint">
+        <div class="bp-tr"></div><div class="bp-bl"></div>
+        <h3>Cotizacion</h3>
+        <div id="breakdown">
+          <p class="price-hint">Completa forma, espesor, ancho, largo y agujeros para ver el precio.</p>
+        </div>
+        <div class="qty-row">
+          <label for="cantidad" class="mono" style="font-size:.78rem;color:var(--text-2);text-transform:uppercase">Cantidad</label>
+          <input type="number" id="cantidad" min="1" value="1">
+        </div>
+        <button class="btn btn-primary" id="btn-add-cart" style="width:100%;justify-content:center" disabled>Agregar al carrito</button>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>© LaserTec — Corte laser industrial</span>
+    <span class="mono">Pagos procesados por Mercado Pago</span>
+  </div>
+</footer>
+
+<script src="/js/cart.js"></script>
+<script src="/js/category.js"></script>
+</body>
+</html>
