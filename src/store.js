@@ -9,6 +9,8 @@ const path = require("path");
 const DATA_DIR = path.join(__dirname, "..", "data");
 const PARAMS_FILE = path.join(DATA_DIR, "pricing-params.json");
 const ORDERS_FILE = path.join(DATA_DIR, "orders.json");
+const CONTACTS_FILE = path.join(DATA_DIR, "contacts.json");
+const USERS_FILE = path.join(DATA_DIR, "users.json");
 
 if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
 
@@ -73,8 +75,59 @@ function getOrder(id) {
   return getOrders().find(o => o.id === id) || null;
 }
 
+function getContacts() {
+  if (!fs.existsSync(CONTACTS_FILE)) return [];
+  return JSON.parse(fs.readFileSync(CONTACTS_FILE, "utf-8"));
+}
+
+function saveContact(contact) {
+  const contacts = getContacts();
+  contacts.push(contact);
+  fs.writeFileSync(CONTACTS_FILE, JSON.stringify(contacts, null, 2));
+  return contact;
+}
+
+function getUsers() {
+  if (!fs.existsSync(USERS_FILE)) return [];
+  return JSON.parse(fs.readFileSync(USERS_FILE, "utf-8"));
+}
+
+function saveUsers(users) {
+  fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2));
+}
+
+function getUserByEmail(email) {
+  return getUsers().find(u => u.email.toLowerCase() === String(email).toLowerCase()) || null;
+}
+
+function getUserById(id) {
+  return getUsers().find(u => u.id === id) || null;
+}
+
+function createUser(user) {
+  const users = getUsers();
+  users.push(user);
+  saveUsers(users);
+  return user;
+}
+
+function updateUser(id, patch) {
+  const users = getUsers();
+  const idx = users.findIndex(u => u.id === id);
+  if (idx === -1) return null;
+  users[idx] = { ...users[idx], ...patch };
+  saveUsers(users);
+  return users[idx];
+}
+
+function anyAdminExists() {
+  return getUsers().some(u => u.role === "admin");
+}
+
 module.exports = {
   getPricingParams, savePricingParams,
   getOrders, saveOrder, updateOrder, getOrder,
+  getContacts, saveContact,
+  getUsers, getUserByEmail, getUserById, createUser, updateUser, anyAdminExists,
   DEFAULT_PARAMS
 };
