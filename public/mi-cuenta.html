@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi cuenta — LaserTec</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">LASER<span class="dot">•</span>TEC</a>
+    <nav class="nav" style="display:flex">
+      <a href="/">Inicio</a>
+      <a href="/#categorias">Categorias</a>
+      <span data-auth-slot class="nav-auth-slot"></span>
+    </nav>
+  </div>
+</header>
+
+<section style="padding-top:48px">
+  <div class="container">
+    <h1>Mis pedidos</h1>
+    <div id="content"></div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>© LaserTec — Corte laser industrial</span>
+    <span class="mono">Pagos procesados por Mercado Pago</span>
+  </div>
+</footer>
+
+<script src="/js/cart.js"></script>
+<script src="/js/auth.js"></script>
+<script>
+(async function () {
+  const auth = getAuth();
+  const content = document.getElementById("content");
+  if (!auth?.token) {
+    content.innerHTML = `<div class="alert error">Tenes que <a href="/login.html" style="color:var(--beam)">iniciar sesion</a> para ver tus pedidos.</div>`;
+    return;
+  }
+  const res = await authFetch("/api/my/orders");
+  if (!res.ok) {
+    content.innerHTML = `<div class="alert error">No se pudieron cargar tus pedidos.</div>`;
+    return;
+  }
+  const orders = await res.json();
+  if (orders.length === 0) {
+    content.innerHTML = `<div class="cart-empty"><p>Todavia no hiciste ningun pedido.</p><a href="/#categorias" class="btn btn-outline">Ver categorias</a></div>`;
+    return;
+  }
+  const estadoClase = (e) => e === "pagado" ? "pagado" : e === "rechazado" ? "rechazado" : "pendiente";
+  content.innerHTML = `
+    <table class="admin-table">
+      <thead><tr><th>Fecha</th><th>Items</th><th>Metodo</th><th>Estado</th><th>Total</th></tr></thead>
+      <tbody>
+        ${orders.map(o => `
+          <tr>
+            <td>${new Date(o.fecha).toLocaleDateString("es-AR")}</td>
+            <td>${o.items.map(i => `${i.categoriaNombre} (${i.cantidad})`).join(", ")}</td>
+            <td class="mono">${o.metodoPago || "mercadopago"}</td>
+            <td><span class="status-pill ${estadoClase(o.estado)}">${o.estado.replace(/_/g," ")}</span></td>
+            <td class="mono">$${o.total.toLocaleString("es-AR")}</td>
+          </tr>
+        `).join("")}
+      </tbody>
+    </table>
+  `;
+})();
+</script>
+</body>
+</html>

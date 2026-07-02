@@ -11,8 +11,15 @@
 <header class="site-header">
   <div class="container">
     <a href="/" class="logo">LASER<span class="dot">•</span>TEC</a>
-    <nav class="nav">
-      <a href="/#categorias">Categorias</a>
+    <button class="nav-toggle" data-nav-toggle aria-label="Abrir menu">☰</button>
+    <nav class="nav" data-nav>
+      <a href="/">Inicio</a>
+      <a href="/empresa.html">Nuestra empresa</a>
+      <a href="/servicios.html">Servicios</a>
+      <a href="/#categorias" class="active">Productos / Categorias</a>
+      <a href="/productos-terminados.html">Productos terminados</a>
+      <a href="/contacto.html">Contacto</a>
+      <span data-auth-slot class="nav-auth-slot"></span>
       <a href="/carrito.html" class="cart-link">Carrito <span class="cart-count" data-cart-count>0</span></a>
     </nav>
   </div>
@@ -58,6 +65,8 @@
 </footer>
 
 <script src="/js/cart.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/nav.js"></script>
 <script src="/js/category.js"></script>
 </body>
 </html>

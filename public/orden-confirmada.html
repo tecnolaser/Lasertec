@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pedido confirmado — LaserTec</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header class="site-header"><div class="container">
+  <a href="/" class="logo">LASER<span class="dot">•</span>TEC</a>
+</div></header>
+
+<section style="padding-top:64px">
+  <div class="container" style="max-width:560px">
+    <div class="badge" style="border-color:var(--warn);color:var(--warn)">Pedido registrado</div>
+    <h1 style="margin-top:18px">Falta confirmar el pago</h1>
+    <div id="detalle">Cargando el detalle de tu pedido...</div>
+    <a href="/" class="btn btn-outline" style="margin-top:24px">Volver al catalogo</a>
+  </div>
+</section>
+
+<script>
+  const orderId = new URLSearchParams(location.search).get("order");
+  if (orderId) {
+    fetch(`/api/orders/${orderId}`).then(r => r.json()).then(o => {
+      const el = document.getElementById("detalle");
+      if (o.metodoPago === "transferencia") {
+        const d = o.datosTransferencia || {};
+        el.innerHTML = `
+          <p style="color:var(--text-1)">Pedido <strong>#${o.id.slice(0,8)}</strong> por <strong>$${o.total.toLocaleString("es-AR")}</strong>. Transferi a esta cuenta y despues escribinos por WhatsApp o email con el comprobante para que coordinemos la entrega.</p>
+          <div class="bank-details">
+            <div>Banco: ${o.bancoNombre || "Completar con datos reales"}</div>
+            <div>CBU: 0000000000000000000000</div>
+            <div>Alias: LASERTEC.CORTE.LASER</div>
+            <div>CUIT: 00-00000000-0</div>
+          </div>
+          <a href="https://wa.me/5491100000000" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:20px">Enviar comprobante por WhatsApp</a>
+        `;
+      } else if (o.metodoPago === "efectivo") {
+        el.innerHTML = `
+          <p style="color:var(--text-1)">Pedido <strong>#${o.id.slice(0,8)}</strong> por <strong>$${o.total.toLocaleString("es-AR")}</strong> registrado para pago en efectivo. Nos vamos a contactar a <strong>${o.cliente?.email || "tu email"}</strong> para coordinar el retiro o la entrega y el pago.</p>
+        `;
+      } else {
+        el.innerHTML = `<p style="color:var(--text-1)">Pedido <strong>#${o.id.slice(0,8)}</strong> registrado.</p>`;
+      }
+    }).catch(() => {
+      document.getElementById("detalle").innerHTML = `<p style="color:var(--text-1)">Tu pedido fue registrado. Te vamos a contactar para coordinar el pago.</p>`;
+    });
+  }
+</script>
+</body>
+</html>

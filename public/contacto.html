@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacto — LaserTec</title>
+<meta name="description" content="Contacta a LaserTec para cotizar tu pieza de corte laser a medida.">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="logo">LASER<span class="dot">•</span>TEC</a>
+    <button class="nav-toggle" data-nav-toggle aria-label="Abrir menu">☰</button>
+    <nav class="nav" data-nav>
+      <a href="/">Inicio</a>
+      <a href="/empresa.html">Nuestra empresa</a>
+      <a href="/servicios.html">Servicios</a>
+      <a href="/#categorias">Productos / Categorias</a>
+      <a href="/productos-terminados.html">Productos terminados</a>
+      <a href="/contacto.html" class="active">Contacto</a>
+      <span data-auth-slot class="nav-auth-slot"></span>
+      <a href="/carrito.html" class="cart-link">Carrito <span class="cart-count" data-cart-count>0</span></a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" style="padding-bottom:32px">
+  <div class="container">
+    <div class="eyebrow">Contacto</div>
+    <h1 style="font-size:clamp(2rem,4vw,3.2rem)">Contanos que pieza necesitas</h1>
+    <p class="lead">Respondemos consultas de catalogo, piezas a plano y pedidos de cotizacion para obra.</p>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="container contact-grid">
+
+    <div>
+      <div class="contact-info-row">
+        <span class="ico">✉</span>
+        <div><h4>Email</h4><a href="mailto:ventas@lasertec.com.ar">ventas@lasertec.com.ar</a></div>
+      </div>
+      <div class="contact-info-row">
+        <span class="ico">☎</span>
+        <div><h4>Telefono / WhatsApp</h4><a href="https://wa.me/5491100000000" target="_blank" rel="noopener">+54 9 11 0000-0000</a></div>
+      </div>
+      <div class="contact-info-row">
+        <span class="ico">📍</span>
+        <div><h4>Planta</h4><p>General Pacheco, Buenos Aires, Argentina<br><span style="color:var(--text-2);font-size:.82rem">(actualizar con la direccion real)</span></p></div>
+      </div>
+      <div class="contact-info-row">
+        <span class="ico">🕒</span>
+        <div><h4>Horario de atencion</h4><p>Lunes a viernes, 8 a 17hs</p></div>
+      </div>
+
+      <iframe class="map-frame" loading="lazy"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-58.68%2C-34.48%2C-58.58%2C-34.42&layer=mapnik"
+        title="Ubicacion de LaserTec"></iframe>
+    </div>
+
+    <div class="blueprint">
+      <div class="bp-tr"></div><div class="bp-bl"></div>
+      <div id="alert-box"></div>
+      <form id="contact-form">
+        <div class="field">
+          <label for="nombre">Nombre / Empresa</label>
+          <input type="text" id="nombre" required placeholder="Tu empresa S.A.">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" required placeholder="vos@tuempresa.com">
+          </div>
+          <div class="field">
+            <label for="telefono">Telefono (opcional)</label>
+            <input type="text" id="telefono" placeholder="011 0000-0000">
+          </div>
+        </div>
+        <div class="field">
+          <label for="mensaje">Que necesitas cotizar?</label>
+          <textarea id="mensaje" class="field-textarea" required placeholder="Contanos la pieza, medidas aproximadas, cantidad y plazo de entrega..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" id="btn-enviar" style="width:100%;justify-content:center">Enviar consulta</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>© LaserTec — Corte laser industrial</span>
+    <span class="mono">Pagos procesados por Mercado Pago</span>
+  </div>
+</footer>
+
+<script src="/js/cart.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/nav.js"></script>
+<script src="/js/contacto.js"></script>
+</body>
+</html>

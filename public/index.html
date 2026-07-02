@@ -12,9 +12,15 @@
 <header class="site-header">
   <div class="container">
     <a href="/" class="logo">LASER<span class="dot">•</span>TEC</a>
-    <nav class="nav">
-      <a href="/#categorias">Categorias</a>
-      <a href="/#como-cotizamos">Como cotizamos</a>
+    <button class="nav-toggle" data-nav-toggle aria-label="Abrir menu">☰</button>
+    <nav class="nav" data-nav>
+      <a href="/" class="active">Inicio</a>
+      <a href="/empresa.html">Nuestra empresa</a>
+      <a href="/servicios.html">Servicios</a>
+      <a href="/#categorias">Productos / Categorias</a>
+      <a href="/productos-terminados.html">Productos terminados</a>
+      <a href="/contacto.html">Contacto</a>
+      <span data-auth-slot class="nav-auth-slot"></span>
       <a href="/carrito.html" class="cart-link">Carrito <span class="cart-count" data-cart-count>0</span></a>
     </nav>
   </div>
@@ -27,13 +33,28 @@
     <p class="lead">Platinas, cancamos, cartelas y mas de 20 familias de piezas para astilleros, montajistas de naves industriales y talleres de estructuras metalicas. Elegis la forma, cargas las medidas, y el precio se calcula al instante.</p>
     <div class="hero-cta">
       <a href="#categorias" class="btn btn-primary">Ver categorias</a>
-      <a href="#como-cotizamos" class="btn btn-outline">Como funciona la cotizacion</a>
+      <a href="#video" class="btn btn-outline">Ver la laser en accion</a>
     </div>
 
     <div class="beam-rail"><div class="beam-dot"></div></div>
     <div class="beam-labels"><span>Chapa cruda</span><span>Corte laser</span><span>Pieza terminada</span></div>
   </div>
 </section>
+
+<section id="video">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Como trabaja la maquina</div>
+      <h2>Corte laser de fibra sobre chapa, en vivo</h2>
+      <p>Referencia del proceso de corte laser sobre chapa de acero (video ilustrativo del proceso; proximamente lo reemplazamos por video propio de nuestra planta).</p>
+    </div>
+    <div class="video-frame">
+      <iframe src="https://www.youtube.com/embed/klbCgd31jQo" title="Corte laser de fibra sobre chapa de acero" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</section>
+
+<hr class="cutline">
 
 <section id="categorias">
   <div class="container">
@@ -69,6 +90,57 @@
   </div>
 </section>
 
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Quienes somos</div>
+      <h2>Una unidad de corte laser dedicada al sector naval e industrial</h2>
+      <p>LaserTec provee piezas de acero cortadas a laser hasta 18mm de espesor para astilleros, montajistas de naves industriales y talleres de estructuras metalicas.</p>
+    </div>
+    <div class="config-grid">
+      <div>
+        <div class="stat-row">
+          <div class="stat"><span class="num">18mm</span><span class="lbl">Espesor maximo</span></div>
+          <div class="stat"><span class="num">20+</span><span class="lbl">Familias de piezas</span></div>
+          <div class="stat"><span class="num">100%</span><span class="lbl">A medida</span></div>
+        </div>
+        <p style="color:var(--text-1);margin-top:24px">Conoce nuestra historia, capacidad de planta y los valores que guian cada pieza que cortamos.</p>
+        <a href="/empresa.html" class="btn btn-outline" style="margin-top:8px">Conocer LaserTec →</a>
+      </div>
+      <div class="photo-slot wide">
+        <span class="icon">📷</span>
+        <span class="label">Foto de la planta / maquina laser — reemplazar con imagen real</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="cutline">
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Que hacemos</div>
+      <h2>Servicios pensados para tu obra</h2>
+      <p>Del corte a medida al asesoramiento tecnico, para que resolver una pieza sea mas rapido que fabricarla vos mismo.</p>
+    </div>
+    <a href="/servicios.html" class="btn btn-outline">Ver todos los servicios →</a>
+  </div>
+</section>
+
+<hr class="cutline">
+
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Trabajos realizados</div>
+      <h2>Productos terminados</h2>
+      <p>Piezas ya entregadas a clientes de astilleros y estructuras metalicas.</p>
+    </div>
+    <a href="/productos-terminados.html" class="btn btn-outline">Ver galeria completa →</a>
+  </div>
+</section>
+
 <footer class="site-footer">
   <div class="container">
     <span>© LaserTec — Corte laser industrial</span>
@@ -77,6 +149,8 @@
 </footer>
 
 <script src="/js/cart.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/nav.js"></script>
 <script src="/js/home.js"></script>
 </body>
 </html>
